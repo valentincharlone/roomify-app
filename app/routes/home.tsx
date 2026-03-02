@@ -2,8 +2,10 @@ import NavBar from "components/NavBar";
 import type { Route } from "./+types/home";
 import { ArrowRightIcon, ArrowUpRight, ClockIcon, Layers } from "lucide-react";
 import { Button } from "components/ui/Button";
+import { Upload } from "components/Upload";
+import { useNavigate } from "react-router";
 
-export function meta({ }: Route.MetaArgs) {
+export function meta({}: Route.MetaArgs) {
   return [
     { title: "New React Router App" },
     { name: "description", content: "Welcome to React Router!" },
@@ -11,6 +13,15 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const handleUploadComplete = async (base64Image: string) => {
+    const newId = Date.now().toString();
+
+    navigate(`/visualizer/${newId}`);
+
+    return true;
+  };
   return (
     <div className="home">
       <NavBar />
@@ -25,10 +36,15 @@ export default function Home() {
 
         <h1>Build beautiful spaces at the speed of thought with Roomify</h1>
 
-        <p className="subtitle">Transform your ideas into stunning visualizations with Roomify's intuitive design tools and collaborative features.</p>
+        <p className="subtitle">
+          Transform your ideas into stunning visualizations with Roomify's
+          intuitive design tools and collaborative features.
+        </p>
 
         <div className="actions">
-          <a href="#upload" className="cta">Get Started <ArrowRightIcon className="icon" /></a>
+          <a href="#upload" className="cta">
+            Get Started <ArrowRightIcon className="icon" />
+          </a>
           <Button variant="outline" size="lg" className="demo">
             View Demo
           </Button>
@@ -47,13 +63,12 @@ export default function Home() {
               <p>Supports JPG, PNG, formats up to 10MB</p>
             </div>
 
-            <p>Upload images</p>
+            <Upload onComplete={handleUploadComplete} />
           </div>
         </div>
       </section>
 
       <section className="projects">
-
         <div className="section-inner">
           <div className="section-head">
             <div className="copy">
@@ -65,7 +80,10 @@ export default function Home() {
           <div className="projects-grid">
             <div className="project-card group">
               <div className="preview">
-                <img src="https://roomify-mlhuk267-dfwu1i.puter.site/projects/1770803585402/rendered.png" alt="Project Preview" />
+                <img
+                  src="https://roomify-mlhuk267-dfwu1i.puter.site/projects/1770803585402/rendered.png"
+                  alt="Project Preview"
+                />
 
                 <div className="badge">
                   <span>Community</span>
@@ -86,7 +104,6 @@ export default function Home() {
                   <ArrowUpRight size={18} />
                 </div>
               </div>
-
             </div>
           </div>
         </div>
