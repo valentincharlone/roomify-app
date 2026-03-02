@@ -1,6 +1,6 @@
 import * as React from "react";
 
-type ButtonVariant = "primary" | "secondary";
+type ButtonVariant = "primary" | "secondary" | "outline";
 type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps
