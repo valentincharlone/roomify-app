@@ -36,10 +36,10 @@ export default function NavBar() {
                     </div>
 
                     <ul className="links">
-                        <a href="#">Product</a>
-                        <a href="#">Pricing</a>
-                        <a href="#">Community</a>
-                        <a href="#">Enterprise</a>
+                        <a href="#">Producto</a>
+                        <a href="#">Precios</a>
+                        <a href="#">Comunidad</a>
+                        <a href="#">Empresas</a>
                     </ul>
                 </div>
 
@@ -47,20 +47,20 @@ export default function NavBar() {
                     {isSignedIn ? (
                         <>
                             <span className="greeting">
-                                {userName ? `Hi, ${userName}` : 'Signed in'}
+                                {userName ? `Hola, ${userName}` : 'Sesión iniciada'}
                             </span>
 
                             <Button size="sm" onClick={handleAuthClick} className="btn">
-                                Log Out
+                                Cerrar sesión
                             </Button>
                         </>
                     ) : (
                         <>
                             <Button onClick={handleAuthClick} size="sm" variant="secondary">
-                                Log In
+                                Iniciar sesión
                             </Button>
 
-                            <a href="#upload" className="cta">Get Started</a>
+                            <a href="#upload" className="cta">Empezar ahora</a>
                         </>
                     )}
                 </div>

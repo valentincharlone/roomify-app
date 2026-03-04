@@ -9,8 +9,12 @@ import { createProject, getProjects } from "lib/puter.action";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Roomify - Visualizador 3D de espacios" },
+    {
+      name: "description",
+      content:
+        "Transformá planos y fotos en visualizaciones 3D con Roomify.",
+    },
   ];
 }
 
@@ -80,22 +84,22 @@ export default function Home() {
             <div className="pulse"></div>
           </div>
 
-          <p>Introducing Roomify</p>
+          <p>Te presentamos Roomify</p>
         </div>
 
-        <h1>Build beautiful spaces at the speed of thought with Roomify</h1>
+        <h1>Diseñá espacios increíbles en segundos con Roomify</h1>
 
         <p className="subtitle">
-          Transform your ideas into stunning visualizations with Roomify's
-          intuitive design tools and collaborative features.
+          Transformá tus ideas en visualizaciones 3D sin esfuerzo, usando IA
+          pensada para arquitectos, diseñadores y estudios.
         </p>
 
         <div className="actions">
           <a href="#upload" className="cta">
-            Get Started <ArrowRightIcon className="icon" />
+            Empezar ahora <ArrowRightIcon className="icon" />
           </a>
           <Button variant="outline" size="lg" className="demo">
-            View Demo
+            Ver demo
           </Button>
         </div>
 
@@ -108,8 +112,8 @@ export default function Home() {
                 <Layers className="icon" />
               </div>
 
-              <h3>Upload your image</h3>
-              <p>Supports JPG, PNG, formats up to 10MB</p>
+              <h3>Subí tu imagen</h3>
+              <p>Soporta JPG y PNG, hasta 10&nbsp;MB</p>
             </div>
 
             <Upload onComplete={handleUploadComplete} />
@@ -121,8 +125,8 @@ export default function Home() {
         <div className="section-inner">
           <div className="section-head">
             <div className="copy">
-              <h2>Your Projects</h2>
-              <p>Explore your visualizations and manage your projects</p>
+              <h2>Tus proyectos</h2>
+              <p>Explorá tus visualizaciones y gestioná tus proyectos</p>
             </div>
           </div>
 
@@ -137,11 +141,11 @@ export default function Home() {
                   <div className="preview">
                     <img
                       src={renderedImage || sourceImage}
-                      alt="Project Preview"
+                      alt="Vista previa del proyecto"
                     />
 
                     <div className="badge">
-                      <span>Community</span>
+                      <span>Personal</span>
                     </div>
                   </div>
 
@@ -151,7 +155,7 @@ export default function Home() {
                       <div className="meta">
                         <ClockIcon className="icon" size={12} />
                         <span>{new Date(timestamp).toLocaleDateString()}</span>
-                        <span>By John Doe</span>
+                        <span>Por vos</span>
                       </div>
                     </div>
 

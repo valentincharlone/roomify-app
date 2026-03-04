@@ -137,7 +137,7 @@ const VisualizerId = () => {
           onClick={handleBack}
           className="exit"
         >
-          <X className="icon" /> Exit Editor
+          <X className="icon" /> Salir del editor
         </Button>
       </nav>
 
@@ -145,9 +145,9 @@ const VisualizerId = () => {
         <div className="panel">
           <div className="panel-header">
             <div className="panel-meta">
-              <p>Project</p>
-              <h2>{project?.name || `Residence ${id}`}</h2>
-              <p className="note">Created by You</p>
+              <p>Proyecto</p>
+              <h2>{project?.name || `Residencia ${id}`}</h2>
+              <p className="note">Creado por vos</p>
             </div>
 
             <div className="panel-actions">
@@ -157,24 +157,24 @@ const VisualizerId = () => {
                 onClick={handleExport}
                 disabled={!currentImage}
               >
-                <Download className="w-4 h-4 mr-2" /> Export
+                <Download className="w-4 h-4 mr-2" /> Exportar
               </Button>
 
               <Button size="sm" onClick={() => {}} className="share">
-                <Share2 className="w-4 h-4 mr-2" /> Share
+                <Share2 className="w-4 h-4 mr-2" /> Compartir
               </Button>
             </div>
           </div>
 
           <div className={`render-area ${isProcessing ? "is-processing" : ""}`}>
             {currentImage ? (
-              <img src={currentImage} alt="AI Render" className="render-img" />
+              <img src={currentImage} alt="Render de IA" className="render-img" />
             ) : (
               <div className="render-placeholder">
                 {project?.sourceImage && (
                   <img
                     src={project?.sourceImage}
-                    alt="Original"
+                    alt="Imagen original"
                     className="render-fallback"
                   />
                 )}
@@ -198,10 +198,10 @@ const VisualizerId = () => {
         <div className="panel compare">
           <div className="panel-header">
             <div className="panel-meta">
-              <p>Comparison</p>
-              <h3>Before and After</h3>
+              <p>Comparación</p>
+              <h3>Antes y después</h3>
             </div>
-            <div className="hint">Drag to compare</div>
+            <div className="hint">Deslizá para comparar</div>
           </div>
 
           <div className="compare-stage">
@@ -212,14 +212,14 @@ const VisualizerId = () => {
                 itemOne={
                   <ReactCompareSliderImage
                     src={project?.sourceImage}
-                    alt="Before"
+                    alt="Antes"
                     className="comapare-img"
                   />
                 }
                 itemTwo={
                   <ReactCompareSliderImage
                     src={currentImage}
-                    alt="After"
+                    alt="Después"
                     className="comapare-img"
                   />
                 }
@@ -229,7 +229,7 @@ const VisualizerId = () => {
                 {project?.sourceImage && (
                   <img
                     src={project.sourceImage}
-                    alt="Before"
+                    alt="Antes"
                     className="compare-img"
                   />
                 )}

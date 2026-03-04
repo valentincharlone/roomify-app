@@ -106,10 +106,10 @@ export const Upload: React.FC<UploadProps> = ({ onComplete }) => {
             </div>
             <p>
               {isSignedIn
-                ? "Click to upload or just drag and drop"
-                : "Sign in or sign up with Puter to upload"}
+                ? "Hacé clic para subir o arrastrá tu archivo acá"
+                : "Iniciá sesión con Puter para subir archivos"}
             </p>
-            <p className="help">Maximum file size 50 MB.</p>
+            <p className="help">Tamaño máximo: 50&nbsp;MB.</p>
           </div>
         </div>
       ) : (
@@ -130,7 +130,9 @@ export const Upload: React.FC<UploadProps> = ({ onComplete }) => {
             </div>
 
             <p className="status-text">
-              {progress < 100 ? "Analyzing Floor Plan..." : "Redirecting..."}
+              {progress < 100
+                ? "Analizando plano..."
+                : "Redirigiendo al editor..."}
             </p>
           </div>
         </div>
