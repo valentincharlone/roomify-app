@@ -31,7 +31,7 @@ export default function NavBar() {
                         <Box className="logo" />
 
                         <span className="name">
-                            Roomify
+                            Plano3D
                         </span>
                     </div>
 

@@ -30,8 +30,8 @@ const VisualizerId = () => {
       const link = document.createElement("a");
       link.href = currentImage;
       link.download = project?.name
-        ? `${project.name.replace(/\s+/g, "-").toLowerCase()}-render.png`
-        : "roomify-render.png";
+        ? `${project.name.replace(/\s+/g, "-").toLowerCase()}-plano3d.png`
+        : "plano3d-render.png";
 
       document.body.appendChild(link);
       link.click();
@@ -129,7 +129,7 @@ const VisualizerId = () => {
         <div className="brand">
           <Box className="logo" />
 
-          <span className="name">Roomify</span>
+          <span className="name">Plano3D</span>
         </div>
         <Button
           variant="secondary"

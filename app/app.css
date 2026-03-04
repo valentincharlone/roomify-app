@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #fdfbf7;
-  --color-foreground: #1a1a1a;
+  --color-background: #f5f5f4;
+  --color-foreground: #111827;
   --color-surface: #ffffff;
-  --color-surface-highlight: #f3f4f6;
-  --color-primary: #f97316;
-  --color-secondary: #3b82f6;
-  --color-accent: #8b5cf6;
-  --font-serif: "Instrument Serif", serif;
-  --font-sans: Inter, sans-serif;
+  --color-surface-highlight: #e5e7eb;
+  --color-primary: #4b5563;
+  --color-secondary: #9ca3af;
+  --color-accent: #29a054;
+  --font-serif: "Fraunces", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
   --shadow-neobrutalism: 4px 4px 0px 0px rgba(0, 0, 0, 1);
 }
 
@@ -19,9 +21,9 @@
   }
 
   body {
-    background-color: #fdfbf7;
-    color: #1a1a1a;
-    font-family: Inter, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
@@ -31,7 +33,7 @@
   h4,
   h5,
   h6 {
-    font-family: "Instrument Serif", serif;
+    font-family: var(--font-serif);
   }
 
   /* Custom Scrollbar */
@@ -102,6 +104,10 @@
       }
     }
   }
+  .brand-highlight{
+    color: var(--color-accent);
+    text-shadow: 0px 2px 7px rgba(0,0,0,0.6);
+  } 
 
   .navbar {
     @apply fixed top-0 w-full z-50 bg-background/90 backdrop-blur-sm border-b border-black/5;
@@ -149,7 +155,7 @@
         }
 
         .cta {
-          @apply inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed px-3 py-1.5 text-xs uppercase tracking-wide bg-primary text-white hover:bg-[#EA580C] shadow-sm;
+          @apply inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed px-3 py-1.5 text-xs uppercase tracking-wide bg-primary text-white hover:bg-zinc-800 shadow-sm;
         }
       }
     }
@@ -162,7 +168,7 @@
       @apply bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center border border-zinc-200;
 
       .icon {
-        @apply w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4;
+        @apply w-12 h-12 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-4;
 
         .alert {
           @apply text-primary w-6 h-6;
@@ -181,7 +187,7 @@
         @apply flex flex-col space-y-3;
 
         .confirm {
-          @apply bg-primary hover:bg-orange-600 text-white;
+          @apply bg-primary hover:bg-zinc-800 text-white;
         }
 
         .cancel {
@@ -198,10 +204,10 @@
       @apply relative h-48 rounded-xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center cursor-pointer bg-zinc-50 border-zinc-200 hover:border-zinc-300 hover:bg-zinc-100;
 
       &.is-dragging {
-        @apply border-primary bg-orange-50;
+        @apply border-primary bg-zinc-100;
 
         .drop-icon {
-          @apply bg-orange-100 text-primary;
+          @apply bg-zinc-200 text-primary;
         }
       }
 
@@ -322,7 +328,7 @@
           @apply flex flex-wrap items-center gap-3;
 
           .export {
-            @apply bg-primary text-white hover:bg-orange-600 h-9 border-none shadow-sm;
+            @apply bg-primary text-white hover:bg-zinc-900 h-9 border-none shadow-sm;
           }
 
           .share {
@@ -446,14 +452,14 @@
       }
 
       .upload-shell {
-        @apply w-full max-w-5xl mx-auto relative rounded-3xl overflow-hidden bg-linear-to-b from-blue-100/50 to-white/50 border border-blue-100 p-6 md:p-12 shadow-sm min-h-100 flex items-center justify-center;
+        @apply w-full max-w-5xl mx-auto relative rounded-3xl overflow-hidden bg-linear-to-b from-zinc-100/60 to-white/70 border border-zinc-200 p-6 md:p-12 shadow-sm min-h-100 flex items-center justify-center;
 
         .grid-overlay {
           @apply absolute inset-0 opacity-40 pointer-events-none;
 
           background-image:
-            linear-gradient(#3b82f6 1px, transparent 1px),
-            linear-gradient(90deg, #3b82f6 1px, transparent 1px);
+            linear-gradient(#d1d5db 1px, transparent 1px),
+            linear-gradient(90deg, #d1d5db 1px, transparent 1px);
 
           background-size: 60px 60px;
         }
@@ -465,10 +471,10 @@
             @apply text-center mb-6;
 
             .upload-icon {
-              @apply w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3;
+              @apply w-12 h-12 bg-zinc-200 rounded-full flex items-center justify-center mx-auto mb-3;
 
               .icon {
-                @apply text-orange-500 w-6 h-6;
+                @apply text-zinc-700 w-6 h-6;
               }
             }
 

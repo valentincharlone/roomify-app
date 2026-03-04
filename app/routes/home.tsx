@@ -9,11 +9,10 @@ import { createProject, getProjects } from "lib/puter.action";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Roomify - Visualizador 3D de espacios" },
+    { title: "Plano3D - Visualizador 3D de espacios" },
     {
       name: "description",
-      content:
-        "Transformá planos y fotos en visualizaciones 3D con Roomify.",
+      content: "Transformá planos y fotos en visualizaciones 3D con Plano3D.",
     },
   ];
 }
@@ -29,7 +28,7 @@ export default function Home() {
       isCreatingProjectRef.current = true;
       const newId = Date.now().toString();
 
-      const name = `Residence ${newId}`;
+      const name = `Proyecto ${newId}`;
 
       const newItem = {
         id: newId,
@@ -84,10 +83,13 @@ export default function Home() {
             <div className="pulse"></div>
           </div>
 
-          <p>Te presentamos Roomify</p>
+          <p>Te presentamos Plano3D</p>
         </div>
 
-        <h1>Diseñá espacios increíbles en segundos con Roomify</h1>
+        <h1>
+          Diseñá espacios increíbles en segundos con{" "}
+          <span className="brand-highlight">Plano3D</span>
+        </h1>
 
         <p className="subtitle">
           Transformá tus ideas en visualizaciones 3D sin esfuerzo, usando IA
