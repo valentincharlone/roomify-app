@@ -294,6 +294,10 @@
           @apply w-5 h-5 mr-2;
         }
       }
+
+      .topbar-actions {
+        @apply flex items-center gap-3;
+      }
     }
 
     .content {
@@ -589,6 +593,62 @@
 
           span {
             @apply font-bold text-xl text-zinc-800 group-hover:text-black transition-colors tracking-tight;
+          }
+        }
+      }
+    }
+
+    .pricing {
+      @apply py-20 bg-background;
+
+      .section-inner {
+        @apply max-w-7xl mx-auto px-6;
+
+        .section-head {
+          @apply flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6;
+
+          .copy {
+            @apply max-w-3xl;
+
+            h2 {
+              @apply text-3xl md:text-4xl font-serif text-black mb-3;
+            }
+
+            p {
+              @apply text-zinc-600 text-sm md:text-base;
+            }
+          }
+        }
+
+        .pricing-grid {
+          @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+
+          .pricing-card {
+            @apply bg-white rounded-2xl border border-zinc-200 p-6 shadow-sm flex flex-col justify-between;
+
+            h3 {
+              @apply text-xl font-serif font-bold text-black mb-2;
+            }
+
+            .price {
+              @apply text-sm text-zinc-600 mb-4;
+
+              .amount {
+                @apply text-2xl font-semibold text-black;
+              }
+            }
+
+            ul {
+              @apply space-y-1 text-sm text-zinc-600 mb-4;
+            }
+
+            .note {
+              @apply text-xs text-zinc-500 mt-auto;
+            }
+
+            &.featured {
+              @apply border-primary bg-white shadow-md relative overflow-hidden;
+            }
           }
         }
       }

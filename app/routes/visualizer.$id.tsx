@@ -12,7 +12,7 @@ import { useNavigate, useOutletContext, useParams } from "react-router";
 const VisualizerId = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { userId } = useOutletContext<AuthContext>();
+  const { userId, isSignedIn, signIn } = useOutletContext<AuthContext>();
 
   const hasInitialGenerated = useRef(false);
 
@@ -37,7 +37,7 @@ const VisualizerId = () => {
       link.click();
       document.body.removeChild(link);
     } catch (error) {
-      console.error("Failed to export image", error);
+      console.error("No se pudo exportar la imagen", error);
     }
   };
 
@@ -71,7 +71,7 @@ const VisualizerId = () => {
         }
       }
     } catch (error) {
-      console.error("Generation failed");
+      console.error("Falló la generación del render", error);
     } finally {
       setIsProcessing(false);
     }
@@ -82,6 +82,34 @@ const VisualizerId = () => {
 
     const loadProject = async () => {
       if (!id) {
+        setIsProjectLoading(false);
+        return;
+      }
+
+      // Demo pública: no requiere cuenta ni datos previos
+      if (id === "demo") {
+        const demoProject: DesignItem = {
+          id: "demo",
+          name: "Departamento 2 ambientes - Demo",
+          sourceImage:
+            "https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg",
+          renderedImage:
+            "https://images.pexels.com/photos/1571458/pexels-photo-1571458.jpeg",
+          timestamp: Date.now(),
+        };
+
+        if (!isMounted) return;
+
+        setProject(demoProject);
+        setCurrentImage(demoProject.renderedImage || null);
+        setIsProjectLoading(false);
+        hasInitialGenerated.current = true;
+        return;
+      }
+
+      if (!isSignedIn) {
+        setProject(null);
+        setCurrentImage(null);
         setIsProjectLoading(false);
         return;
       }
@@ -109,6 +137,7 @@ const VisualizerId = () => {
     if (
       isProjectLoading ||
       hasInitialGenerated.current ||
+      !isSignedIn ||
       !project?.sourceImage
     )
       return;
@@ -131,14 +160,23 @@ const VisualizerId = () => {
 
           <span className="name">Plano3D</span>
         </div>
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={handleBack}
-          className="exit"
-        >
-          <X className="icon" /> Salir del editor
-        </Button>
+
+        <div className="topbar-actions">
+          {!isSignedIn && (
+            <Button variant="secondary" size="sm" onClick={signIn}>
+              Iniciar sesión
+            </Button>
+          )}
+
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={handleBack}
+            className="exit"
+          >
+            <X className="icon" /> Salir del editor
+          </Button>
+        </div>
       </nav>
 
       <section className="content">
@@ -171,21 +209,32 @@ const VisualizerId = () => {
               <img src={currentImage} alt="Render de IA" className="render-img" />
             ) : (
               <div className="render-placeholder">
-                {project?.sourceImage && (
-                  <img
-                    src={project?.sourceImage}
-                    alt="Imagen original"
-                    className="render-fallback"
-                  />
+                {!isSignedIn && id !== "demo" ? (
+                  <div className="text-center">
+                    <p className="text-zinc-600 text-sm mb-4">
+                      Iniciá sesión para ver tu proyecto.
+                    </p>
+                    <Button variant="secondary" size="sm" onClick={signIn}>
+                      Iniciar sesión
+                    </Button>
+                  </div>
+                ) : (
+                  project?.sourceImage && (
+                    <img
+                      src={project?.sourceImage}
+                      alt="Imagen original"
+                      className="render-fallback"
+                    />
+                  )
                 )}
 
                 {isProcessing && (
                   <div className="render-overlay">
                     <div className="rendering-card">
                       <RefreshCcw className="spinner" />
-                      <span className="title">Rendering...</span>
+                      <span className="title">Renderizando...</span>
                       <span className="subtitle">
-                        Generating your 3D visualization
+                        Generando la vista 3D de tu espacio
                       </span>
                     </div>
                   </div>

@@ -23,7 +23,9 @@ export const createProject = async ({
   visibility = "private",
 }: CreateProjectParams): Promise<DesignItem | null | undefined> => {
   if (!PUTER_WORKER_URL) {
-    console.warn("Missing VITE_PUTER_WORKER_URL; skip history fetch");
+    console.warn(
+      "Falta VITE_PUTER_WORKER_URL; se omite el guardado de proyectos",
+    );
     return null;
   }
   const projectId = item.id;
@@ -51,7 +53,9 @@ export const createProject = async ({
     (isHostedUrl(item.sourceImage) ? item.sourceImage : "");
 
   if (!resolvedSource) {
-    console.warn("Failed to host source image, skipping save.");
+    console.warn(
+      "No se pudo alojar la imagen de origen, se omite el guardado.",
+    );
     return null;
   }
 
@@ -90,21 +94,23 @@ export const createProject = async ({
     );
 
     if (!response.ok) {
-      console.error("Failed to save project", await response.text());
+      console.error("No se pudo guardar el proyecto", await response.text());
       return null;
     }
 
     const data = (await response.json()) as { project?: DesignItem | null };
     return data?.project ?? null;
   } catch (error) {
-    console.log("Fialed to save project");
+    console.log("No se pudo guardar el proyecto");
     return null;
   }
 };
 
 export const getProjects = async () => {
   if (!PUTER_WORKER_URL) {
-    console.warn("Missing VITE_PUTER_WORKER_URL; skip history fetch");
+    console.warn(
+      "Falta VITE_PUTER_WORKER_URL; se omite la carga del historial",
+    );
     return [];
   }
 
@@ -117,21 +123,23 @@ export const getProjects = async () => {
     );
 
     if (!response.ok) {
-      console.error("Failed to fetch history", await response.text());
+      console.error("No se pudo obtener el historial", await response.text());
       return [];
     }
 
     const data = (await response.json()) as { projects?: DesignItem[] | null };
     return Array.isArray(data?.projects) ? data?.projects : [];
   } catch (error) {
-    console.error("Failed to get projects");
+    console.error("No se pudo obtener los proyectos");
     return [];
   }
 };
 
 export const getProjectById = async ({ id }: { id: string }) => {
   if (!PUTER_WORKER_URL) {
-    console.warn("Missing VITE_PUTER_WORKER_URL; skipping project fetch.");
+    console.warn(
+      "Falta VITE_PUTER_WORKER_URL; se omite la carga de un proyecto.",
+    );
     return null;
   }
 
@@ -144,7 +152,7 @@ export const getProjectById = async ({ id }: { id: string }) => {
     console.log("Fetch project response:", response);
 
     if (!response.ok) {
-      console.error("Failed to fetch project:", await response.text());
+      console.error("No se pudo obtener el proyecto:", await response.text());
       return null;
     }
 
@@ -154,7 +162,7 @@ export const getProjectById = async ({ id }: { id: string }) => {
 
     return data?.project ?? null;
   } catch (error) {
-    console.error("Failed to fetch project:", error);
+    console.error("No se pudo obtener el proyecto:", error);
     return null;
   }
 };
